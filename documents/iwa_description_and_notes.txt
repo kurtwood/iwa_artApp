@@ -1,12 +1,19 @@
 Intelligent Web Application - Project 
 
-This application will be used to find event to go according to several criteria, such as the kind of event we want to attempt or our tastes. All the events those match will be display on a map according to our location.
-In addition, we can log in with our facebook profile, and specify to the application if other friends are coming along. Depending on the tastes of the others, the application shows the events and venues which match with everyone.
-Foursquare might also be use: all the previous venues we already checked in might be used as a kind of “place of interest” and tell the application that we might would like to go back so it will use these places as place to privilege.
+This application will be used to find event to go according to several criteria, 
+such as the kind of event we want to attempt or our tastes. All the events those match will be display on a map according to our location.
+In addition, we can log in with our facebook profile, and specify to the application if other friends are coming along. 
+Depending on the tastes of the others, the application shows the events and venues which match with everyone.
+Foursquare might also be use: all the previous venues we already checked in might be used as a kind of “place of interest” 
+and tell the application that we might would like to go back so it will use these places as place to privilege.
 	
 					
-So, the app should be able to find events close to where you are located. It should also be able to find events within a certain type or theme, e.g. an art exhibition focused on surrealism. The app, based on your criteria, have to look at you position, find venues nearby and decide if the event is something you might like.
-The app could also work in the way that you tell it that you would like to experience, e.g. some art from the renaissance. Then a suitable response would be spots where you can experience this.
+So, the app should be able to find events close to where you are located. 
+It should also be able to find events within a certain type or theme, e.g. an art exhibition focused on surrealism. 
+The app, based on your criteria, have to look at you position, find venues nearby and decide if the event 
+is something you might like.
+The app could also work in the way that you tell it that you would like to experience, e.g. 
+some art from the renaissance. Then a suitable response would be spots where you can experience this.
 			
 		
 
@@ -17,7 +24,8 @@ The different kind of event to consider are:
 	•	exhibition
 	•	music
 
-We also might add some features such as looking for tickets (for sport and music events) on Ticketswap and facebook. (and why not Primera , a ticket reseller, if they have an api)
+We also might add some features such as looking for tickets (for sport and music events) on 
+Ticketswap and facebook. (and why not Primera , a ticket reseller, if they have an api)
 
 Dataset to use:
 ArtInHolland
