@@ -26,16 +26,21 @@ Report
 Your report should give an adequate description of your project, including but not limited to:
 	•	the goal of the application (what does it aim to do, and why is this useful?)
 	•	the datasets and services used by the application
-	•	the functionality of the application (what things does the application do, what is a typical workflow)
+	•	the functionality of the application (what things does the application do, what is a 
+		typical workflow)
 	•	the inferencing used by the application (it helps if you give a concrete example)
-	•	any other considerations you had during the design and implementation (what worked, what didn't work, what motivated your decision to go for a particular solution)
+	•	any other considerations you had during the design and implementation (what worked, 
+		what didn't work, what motivated your decision to go for a particular solution)
 	•	any future plans you may have (what would you like to add if you had the time?)
 
-In our experience, good reports are about 10 pages long. However, there is no strict page limit. Remember, more is not necessarily better, and less probably means that you haven't covered the subject in sufficient detail.
-It usually helps if you picture the reader to be a fellow student: what does he/she need to know to understand what you've done?
+In our experience, good reports are about 10 pages long. However, there is no strict page limit. Remember, 
+more is not necessarily better, and less probably means that you haven't covered the subject in sufficient 
+detail. It usually helps if you picture the reader to be a fellow student: what does he/she need to know to 
+understand what you've done?
 
 Assessment
-The project will be assessed during a 30 minute interview on Wednesday, March 26th (we will schedule sessions on another day for those who cannot make it due to other exam obligations).
+The project will be assessed during a 30 minute interview on Wednesday, March 26th (we will schedule sessions
+ on another day for those who cannot make it due to other exam obligations).
 
 Things we will grade the project on:
 	•	the way in which you present the result to us during the interview. 
