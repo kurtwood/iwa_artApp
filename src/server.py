@@ -79,7 +79,7 @@ def store():
     
     data = request.form['data'].encode('utf-8')
     
-    url = TUTORIAL_REPOSITORY + "/statements"
+    url = ARTAPP_REPOSITORY + "/statements"
     headers = {'content-type': 'application/x-turtle'}
     
     app.logger.debug('Assuming your data is Turtle!!')
