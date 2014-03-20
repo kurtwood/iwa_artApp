@@ -7,6 +7,9 @@ h1 {
 .container > h1 {
 text-align: center;
 }
+.toHide {
+display: none;
+}
 
 .container > .form-group {
   text-align:center;
