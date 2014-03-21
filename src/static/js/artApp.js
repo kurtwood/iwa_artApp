@@ -112,7 +112,7 @@ $('#submitIknow').on('click', function(e){
 
 $('#submitNoidea').on('click', function(e){ 
     //var venueType = $("#selectGenre option:selected").html();
-    var venueType="Muziektheater";
+    //var venueType="Muziektheater";
     var lng = document.getElementById("longitude").innerHTML;
     var lat = document.getElementById("latitude").innerHTML;
     
