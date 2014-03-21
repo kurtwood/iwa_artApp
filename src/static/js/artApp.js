@@ -1,9 +1,22 @@
+var toggleIknow = false;
+var toggleNoidea = false;
+
 $("#iknow").on("click", function(){
     $("#toHideLocation").toggle();
+    toggleIknow = !toggleIknow;
+    if (toggleNoidea == true){
+       $("#toHideNoidea").toggle();
+       toggleNoidea = false;
+    }
 });
 
 $("#noidea").on("click", function(){
     $("#toHideNoidea").toggle();
+    toggleNoidea = !toggleNoidea;
+    if(toggleIknow == true){
+    	$("#toHideLocation").toggle();
+        toggleIknow = false;
+    }
 });
 
 $('#submitIknow').on('click', function(e){
@@ -115,13 +128,3 @@ function handle_error(err) {
   }
 }
 
-function initialize_map(){
-    var latlng = new google.maps.LatLng(0, 0);
-    var mapOptions = {
-            zoom : 2,
-            mapTypeId : google.maps.MapTypeId.ROADMAP,
-            center :  latlng         
-        };
-    
-        map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions); 
-}
