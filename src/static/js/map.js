@@ -4,7 +4,7 @@ function initialize_map(){
     var myLatlng = new google.maps.LatLng(52.370569, 4.894989);
     
     var mapOptions = {
-        zoom: 2,
+        zoom: 5,
         center: myLatlng
     }
   
@@ -48,7 +48,6 @@ function setMarker(lat, lng, venue){
 var x = document.getElementById("demo");
 function getLocation()
   {
-    alert("test");
   if (navigator.geolocation)
     {
     navigator.geolocation.getCurrentPosition(showPosition);

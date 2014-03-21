@@ -1,15 +1,13 @@
 <!DOCTYPE html>  
 <html>  
-  <head>  
+nitialize_map()  <head>  
     <title>FINAL PROJECT</title>  
     <meta name="viewport" content="width=device-width, initial-scale=1.0">  
     <!-- Bootstrap -->  
-    <link href="bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
+    <link href="static/bootstrap/css/bootstrap.min.css" rel="stylesheet" media="screen"> 
     <link href="http://netdna.bootstrapcdn.com/twitter-bootstrap/2.2.2/css/bootstrap-combined.min.css" rel="stylesheet">
-    <link href="../static/bootstrap/css/custom.css" rel="stylesheet" media="screen">
-    <link rel="stylesheet" type="text/css" media="screen" href="http://tarruda.github.com/bootstrap-datetimepicker/assets/css/bootstrap-datetimepicker.min.css">
+    <link href="static/bootstrap/css/custom.css" rel="stylesheet" media="screen">
 
-    <script src="../static/js/map.js"></script>
     <!-- Google maps -->
     <script src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>  
   </head>  
@@ -27,36 +25,15 @@
     <!-- ---------------------------------------- -->
     
     <div class="container">
-      <h1>Map</h1>  
-      Here will be shown all the events from the selected date.
-      <!-- DateTimePicker -->
-      <div id="datetimepicker" class="input-append date">
-        <input data-format="dd/MM/yyyy HH:mm:ss PP" type="text" placeholder="Date & Time..."></input>
-        <span class="add-on">
-          <i data-time-icon="icon-time" data-date-icon="icon-calendar"></i>
-
-        </span>
-	<br/><br/>
-        <a id='button' class='btn btn-primary'>Search</a>
-      </div>
       <div id="map_canvas"></div>
 
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->  
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.0/jquery.min.js"></script>  
     <!-- Include all compiled plugins (below), or include individual files as needed -->  
-    <script src="bootstrap/js/bootstrap.min.js"></script>
+    <script src="static/bootstrap/js/bootstrap.min.js"></script>
     <script type="text/javascript" src="http://tarruda.github.com/bootstrap-datetimepicker/assets/js/bootstrap-datetimepicker.min.js"></script>
-
-    <!-- Script DateTimePicker  -->
-    <script type="text/javascript">
-      $(function() {
-        $('#datetimepicker').datetimepicker({
-        language: 'en',
-        });
-      });
-    </script>
- 
+    <script type="text/javascript" src="static/js/artApp.js"></script>
     <script>
       initialize_map();
       google.maps.event.addDomListener(window, 'load', initialize_map);  

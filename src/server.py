@@ -34,7 +34,6 @@ def event_page():
     app.logger.debug("you arrived at" + url_for('event_page'))
     return render_template("event.html")
 
-
 @app.route('/contact.html')  
 def contact_page():
     app.logger.debug("you arrived at" + url_for('contact_page'))

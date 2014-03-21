@@ -9,7 +9,7 @@ var output = document.getElementById("curLoc");
     var latitude  = position.coords.latitude;
     var longitude = position.coords.longitude;
 
-    output.innerHTML = '<p>Latitude: ' + latitude + '° <br>Longitude: ' + longitude + '°</p>';
+    output.innerHTML = '<div id="latitude">' + latitude + '</div> <br/> <div id="longitude">' + longitude + '</div>';
 
   };
 
