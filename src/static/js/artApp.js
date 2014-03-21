@@ -94,6 +94,27 @@ $('#submitNoidea').on('click', function(e){
     });
 });
 
+function get_location() {
+  if (Modernizr.geolocation) {
+    navigator.geolocation.getCurrentPosition(show_map, handle_error);
+  } else {
+        handle_error();
+  }
+}
+
+var longitude;
+var latitude;
+function show_map(position) {
+  latitude = position.coords.latitude;
+  longitude = position.coords.longitude;
+}
+
+function handle_error(err) {
+  if (err.code == 1) {
+    window.alert("Uups, something went wrong!");
+  }
+}
+
 function initialize_map(){
     var myLatlng = new google.maps.LatLng(0,0);
     
