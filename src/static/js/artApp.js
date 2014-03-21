@@ -40,44 +40,46 @@ $('#submitIknow').on('click', function(e){
     var format = 'JSON';
 
     $.get('/sparql',data={'endpoint': endpoint, 'query': query, 'format': format}, function(json){
-        console.log(JSON.stringify(json.results.bindings[1].title.value));
+    
+    var lat = json.results.bindings[0].lat.value;
+    var lng = json.results.bindings[0].long.value;
 
+          //$("#toHideMap").toggle();
+        //initialize_map();
+        //google.maps.event.addDomListener(window, "load", initialize_map);
+        //setMarker(lat, lng, venue);
         try {
+            
             var vars = json.head.vars;
 
             var ul = $('<ul></ul>');
             ul.addClass('list-group');
+            //var pre = $('<pre></pre>');
 
             $.each(json.results.bindings, function(index,value){
                 var li = $('<li></li>');
                 li.addClass('list-group-item');
 
                 $.each(vars, function(index, v){
-                    var v_type = value[v]['type'];
-                    var v_value = value[v]['value'];
 
-                    li.append('<strong>'+v+'</strong><br/>');
+                    if (index == 0) {
+                        console.log(value.title.value);
+                        //pre.text(value.title.value);
 
-                    // If the value is a URI, create a hyperlink
-                    if (v_type == 'uri') {
-                        var a = $('<a></a>');
-                        a.attr('href',v_value);
-                        a.text(v_value);
-                        li.append(a);
-                    // Else we're just showing the value.
-                    } else {
-                        li.append(v_value);console.log('value '+ value);
+                        //li.append('<strong>'+index+'</strong><br/>');
+                        li.append(value.title.value);
+                        li.append('</br>');
+
+
                     }
-                    li.append('<br/>');
-
                 });
                 ul.append(li);
-
+                
             });
-            //$('#toOutputArea').html(ul);
+            $('#linkOutput').html(ul);
             console.log('Bravo:' + ul);
         } catch(err) {
-            //$('#toOutputArea').html('Something went wrong!');
+            $('#linkOutput').html('Something went wrong!');
             console.log('Something went wrong');
         }
     });
@@ -88,16 +90,16 @@ $('#submitIknow').on('click', function(e){
 });
 
 $('#submitNoidea').on('click', function(e){ 
-        //var venueType = $("#selectGenre option:selected").html();
-        var venueType="Muziektheater";
-        var lng = "4.890198";
-        var lat = "52.37111";
-        var locationSearch='http://api.artsholland.com/sparql?query=PREFIX+ah%3A+<http%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F>%0D%0APREFIX+geo%3A+<http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+rdf%3A+<http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+rdfs%3A+<http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23>%0D%0A%0D%0ACONSTRUCT+%7B%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%7D%0D%0AWHERE+%7B%0D%0A++%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09++++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09ah%3Aproduction+%3Fproduction.%0D%0A%09%0D%0A%09%3Fproduction+ah%3Agenre+%3Fgenre.%0D%0A%0D%0A%09%3Fgenre+rdfs%3Alabel+%22'+venueType+'%22%5E%5Exsd%3Astring.%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%0D%0AFILTER+%28+%3Flong+%3E+%22'+lng+'%22%5E%5Exsd%3Afloat+-+%220.025%22%5E%5Exsd%3Afloat+%26%26+%3Flong+%3C+%22'+lng+'%22%5E%5Exsd%3Afloat+%2B+%220.025%22%5E%5Exsd%3Afloat+%0D%0A%09%09%26%26+%3Flat+%3E+%22'+lat+'%22%5E%5Exsd%3Afloat+-+%220.015%22%5E%5Exsd%3Afloat+%26%26+%3Flat+%3C+%22'+lat+'%22%5E%5Exsd%3Afloat+%2B+%220.015%22%5E%5Exsd%3Afloat%29%0D%0A%7D%0D%0A%0D%0A+LIMIT+10'
+    //var venueType = $("#selectGenre option:selected").html();
+    var venueType="Muziektheater";
+    var lng = "4.890198";
+    var lat = "52.37111";
+    var locationSearch='http://api.artsholland.com/sparql?query=PREFIX+ah%3A+<http%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F>%0D%0APREFIX+geo%3A+<http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+rdf%3A+<http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+rdfs%3A+<http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23>%0D%0A%0D%0ACONSTRUCT+%7B%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%7D%0D%0AWHERE+%7B%0D%0A++%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09++++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09ah%3Aproduction+%3Fproduction.%0D%0A%09%0D%0A%09%3Fproduction+ah%3Agenre+%3Fgenre.%0D%0A%0D%0A%09%3Fgenre+rdfs%3Alabel+%22'+venueType+'%22%5E%5Exsd%3Astring.%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%0D%0AFILTER+%28+%3Flong+%3E+%22'+lng+'%22%5E%5Exsd%3Afloat+-+%220.025%22%5E%5Exsd%3Afloat+%26%26+%3Flong+%3C+%22'+lng+'%22%5E%5Exsd%3Afloat+%2B+%220.025%22%5E%5Exsd%3Afloat+%0D%0A%09%09%26%26+%3Flat+%3E+%22'+lat+'%22%5E%5Exsd%3Afloat+-+%220.015%22%5E%5Exsd%3Afloat+%26%26+%3Flat+%3C+%22'+lat+'%22%5E%5Exsd%3Afloat+%2B+%220.015%22%5E%5Exsd%3Afloat%29%0D%0A%7D%0D%0A%0D%0A+LIMIT+10'
 
-        $.ajax({
-            headers: {
-                Accept: "text/turtle"
-            },
+    $.ajax({
+        headers: {
+            Accept: "text/turtle"
+        },
         url: locationSearch,
         type: "GET",
         success: function(response) { 
@@ -128,3 +130,25 @@ function handle_error(err) {
   }
 }
 
+function initialize_map(){
+    var myLatlng = new google.maps.LatLng(0,0);
+    
+    var mapOptions = {
+        zoom: 2,
+        center: myLatlng
+    }
+  
+    map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
+}
+
+
+function setMarker(lat, lng, venue){
+    var myLatlng = new google.maps.LatLng(lat,lng);
+    map.setCenter(myLatlng);
+    map.setZoom(12);
+    var marker = new google.maps.Marker({
+      position: myLatlng,
+      map: map,
+      title: venue
+    });
+}
