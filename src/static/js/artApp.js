@@ -33,15 +33,16 @@ $('#submitIknow').on('click', function(e){
     var lng = json.results.bindings[0].long.value;
 
           //$("#toHideMap").toggle();
-        initialize_map();
-        setMarker(lat, lng, venue);
+        //initialize_map();
+        //google.maps.event.addDomListener(window, "load", initialize_map);
+        //setMarker(lat, lng, venue);
         try {
             
             var vars = json.head.vars;
 
             var ul = $('<ul></ul>');
             ul.addClass('list-group');
-            var pre = $('<pre></pre>');
+            //var pre = $('<pre></pre>');
 
             $.each(json.results.bindings, function(index,value){
                 var li = $('<li></li>');
@@ -51,17 +52,19 @@ $('#submitIknow').on('click', function(e){
 
                     if (index == 0) {
                         console.log(value.title.value);
-                        pre.text(value.title.value);
+                        //pre.text(value.title.value);
 
-                        li.append('<strong>'+value+'</strong><br/>');
+                        //li.append('<strong>'+index+'</strong><br/>');
                         li.append(value.title.value);
                         li.append('</br>');
+
+
                     }
                 });
                 ul.append(li);
                 
             });
-            $('#tlinkOutput').html(ul);
+            $('#linkOutput').html(ul);
             console.log('Bravo:' + ul);
         } catch(err) {
             $('#linkOutput').html('Something went wrong!');
@@ -125,6 +128,7 @@ function initialize_map(){
   
     map = new google.maps.Map(document.getElementById('map-canvas'), mapOptions);
 }
+
 
 function setMarker(lat, lng, venue){
     var myLatlng = new google.maps.LatLng(lat,lng);

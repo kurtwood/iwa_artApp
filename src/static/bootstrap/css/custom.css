@@ -1,0 +1,29 @@
+body{
+  padding-top: 60px;
+}
+h1 {
+  margin-bottom: 30px
+}
+.well > h1 {
+text-align: center;
+}
+.toHide {
+display: none;
+}
+
+.well > .form-group {
+  text-align:center;
+} 
+
+.well > .form-control{
+  text-align:center;
+}
+
+#homeParagraph{
+text-align: center;
+}
+
+#map_canvas {  
+        width: 800px;  
+        height: 600px;  
+}  
