@@ -34,7 +34,7 @@ $('#submitIknow').on('click', function(e){
         }
     });
 
-    var query = 'PREFIX time: <http://www.w3.org/2006/time#> \n PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?title ?long ?lat ?start  WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n       time:hasBeginning ?start ; \n      ah:production ?production . \n    ?production  dc:title ?title . \n    ?venue dc:title "Melkweg"@en ; \n            geo:long ?long; \n              geo:lat ?lat . \n FILTER (langMatches(lang(?title), "NL")) . \n} \n ORDER BY ASC (?start) \n LIMIT 10';
+    var query = 'PREFIX time: <http://www.w3.org/2006/time#> \n PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?title ?long ?lat ?start  WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n       time:hasBeginning ?start ; \n      ah:production ?production . \n    ?production  dc:title ?title . \n    ?venue dc:title "'+venue+'"@en ; \n            geo:long ?long; \n              geo:lat ?lat . \n FILTER (langMatches(lang(?title), "NL")) . \n} \n ORDER BY ASC (?start) \n LIMIT 10';
     var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/artApp';
     var format = 'JSON';
 
@@ -99,7 +99,7 @@ function handle_error(err) {
 }
 
 function getToday() {
-        var today = new Date();
+    var today = new Date();
     var dd = today.getDate();
     var mm = today.getMonth()+1; //January is 0!
     var yyyy = today.getFullYear();
