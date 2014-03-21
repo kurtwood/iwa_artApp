@@ -10,6 +10,7 @@ function initialize_map(){
     }
   
     map = new google.maps.Map(document.getElementById('map_canvas'), mapOptions);
+    getLocation();
 }
 
 
@@ -46,3 +47,19 @@ function setMarker(lat, lng, venue){
       title: venue
     });
 }
+
+var x = document.getElementById("demo");
+function getLocation()
+  {
+    alert("test");
+  if (navigator.geolocation)
+    {
+    navigator.geolocation.getCurrentPosition(showPosition);
+    }
+  else{x.innerHTML = "Geolocation is not supported by this browser.";}
+  }
+function showPosition(position)
+  {
+  x.innerHTML = "Latitude: " + position.coords.latitude + 
+  "<br>Longitude: " + position.coords.longitude; 
+  }
