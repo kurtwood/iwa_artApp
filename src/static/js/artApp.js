@@ -21,8 +21,7 @@ $("#noidea").on("click", function(){
 
 $('#submitIknow').on('click', function(e){
     var venue = $("#location").val();
-    //var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E+%0D%0APREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0A%0D%0ACONSTRUCT+WHERE+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09+++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09%09ah%3Aproduction+%3Fproduction+.%0D%0A%09%0D%0A%09%3Fproduction+dc%3Atitle+%3Ftitle+.%0D%0A%09%09%09%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en+%3B%0D%0A%09%09+++geo%3Along+%3Flong+%3B%0D%0A%09%09+++geo%3Alat+%3Flat+.%0D%0A%09%09+++%09%0D%0A%7D%0D%0ALIMIT+10';
-    var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0APREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E%0D%0APREFIX+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2006%2Ftime%23%3E%0D%0A%0D%0ACONSTRUCT+WHERE+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09+++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09+++time%3AhasBeginning+%3Fstart+%3B%0D%0A%09%09+++time%3AhasEnd+%3Fend+%3B%0D%0A%09%09+++ah%3Aproduction+%3Fproduction+.%0D%0A%09%0D%0A%09%3Fproduction+dc%3Atitle+%3Ftitle+.%0D%0A%09%09%09%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en+%3B%0D%0A%09%09+++geo%3Along+%3Flong+%3B%0D%0A%09%09+++geo%3Alat+%3Flat+.%0D%0A%09%09+++%09%0D%0A%7D%0D%0ALIMIT+10'
+    var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFIX+owl%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2002%2F07%2Fowl%23%3E%0D%0APREFIX+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0APREFIX+time%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2006%2Ftime%23%3E%0D%0APREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E%0D%0A%0D%0ACONSTRUCT+%7B%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09%09%09++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09++%09%09++time%3AhasBeginning+%3Fstart+%3B%0D%0A%09%09++++++++++time%3AhasEnd+%3Fend+%3B%0D%0A%09%09++++++++++ah%3Aproduction+%3Fproduction+.%0D%0A%09%09+++%0D%0A%09%09+++%3Fproduction+dc%3Atitle+%3Ftitle+%3B%09%0D%0A%09%09%09%09%09+++ah%3Agenre+%3Fgenre+.%0D%0A%09%09+++%0D%0A%09%09+++%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en+%3B%0D%0A%09%09+++%09%09geo%3Along+%3Flong+%3B%0D%0A%09%09+++%09%09geo%3Alat+%3Flat+.%0D%0A%7D+WHERE+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09+++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09+++time%3AhasBeginning+%3Fstart+%3B%0D%0A%09%09+++time%3AhasEnd+%3Fend+%3B%0D%0A%09%09+++ah%3Aproduction+%3Fproduction+.%0D%0A%09%09+++%0D%0A%09%0D%0A%09%3Fproduction+dc%3Atitle+%3Ftitle+%3B%09%0D%0A%09%09%09%09ah%3Agenre+%3Fgenre+.%0D%0A%09%09%09%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en+%3B%0D%0A%09%09+++geo%3Along+%3Flong+%3B%0D%0A%09%09+++geo%3Alat+%3Flat+.%0D%0A%0D%0A%09%0D%0A%09FILTER%28%3Fend+%3E%3D+%22'+getToday()+'T11%3A04%3A14Z%22%5E%5Exsd%3AdateTime%29+.+%0D%0A%09%0D%0A%7D%0D%0ALIMIT+100';
     $.ajax({
          headers: {
              Accept: "text/turtle"
@@ -35,7 +34,7 @@ $('#submitIknow').on('click', function(e){
         }
     });
 
-    var query = 'PREFIX time: <http://www.w3.org/2006/time#> \n PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?title ?long ?lat ?start ?end WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n       time:hasBeginning ?start ; \n     time:hasEnd ?end ;      \n ah:production ?production . \n    ?production  dc:title ?title . \n    ?venue dc:title "Melkweg"@en ; \n            geo:long ?long; \n              geo:lat ?lat . \n } LIMIT 10';
+    var query = 'PREFIX time: <http://www.w3.org/2006/time#> \n PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?title ?long ?lat ?start  WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n       time:hasBeginning ?start ; \n      ah:production ?production . \n    ?production  dc:title ?title . \n    ?venue dc:title "Melkweg"@en ; \n            geo:long ?long; \n              geo:lat ?lat . \n FILTER (langMatches(lang(?title), "NL")) . \n} \n ORDER BY ASC (?start) \n LIMIT 10';
     var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/artApp';
     var format = 'JSON';
 
@@ -60,7 +59,6 @@ $('#submitIknow').on('click', function(e){
                     if (index == 0) {
                         li.append('<strong>'+value.title.value+'</strong>');
                         li.append('    Start: <strong>' + value.start.value);
-                        li.append('</strong>    End: <strong>' + value.end.value+'</strong>');
                         li.append('</br>');
                     }
                 });
@@ -68,7 +66,6 @@ $('#submitIknow').on('click', function(e){
                 
             });
             $('#linkOutput').html(ul);
-            console.log('Bravo:' + ul);
         } catch(err) {
             $('#linkOutput').html('Something went wrong!');
             console.log('Something went wrong');
@@ -114,3 +111,19 @@ function handle_error(err) {
 }
 
 
+function getToday() {
+        var today = new Date();
+    var dd = today.getDate();
+    var mm = today.getMonth()+1; //January is 0!
+    var yyyy = today.getFullYear();
+
+    if(dd<10) {
+        dd='0'+dd
+    } 
+
+    if(mm<10) {
+        mm='0'+mm
+    } 
+    today = yyyy+'-'+mm+'-'+dd;
+    return today;
+}

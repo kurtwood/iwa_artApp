@@ -1,6 +1,5 @@
 var map;
 
-
 function initialize_map(){
     var myLatlng = new google.maps.LatLng(52.370569, 4.894989);
     
@@ -34,8 +33,6 @@ function handle_error(err) {
     window.alert("Uups, something went wrong!");
   }
 }
-
-
 
 function setMarker(lat, lng, venue){
     var myLatlng = new google.maps.LatLng(lat,lng);
