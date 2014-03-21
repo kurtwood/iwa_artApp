@@ -13,6 +13,35 @@ ARTAPP_REPOSITORY = 'http://localhost:8080/openrdf-sesame/repositories/artApp'
 def first_page():
     app.logger.debug('You arrived at ' + url_for('first_page'))
     return render_template('index.html')
+
+@app.route('/index.html')
+def index_page():
+    app.logger.debug('You arrived at ' + url_for('index_page'))
+    return render_template('index.html')
+  
+@app.route('/search.html')  
+def search_page():
+    app.logger.debug("you arrived at" + url_for('search_page'))
+    return render_template("search.html")
+  
+@app.route('/map.html')  
+def map_page():
+    app.logger.debug("you arrived at" + url_for('map_page'))
+    return render_template("map.html")
+
+@app.route('/event.html')  
+def event_page():
+    app.logger.debug("you arrived at" + url_for('event_page'))
+    return render_template("event.html")
+
+
+@app.route('/contact.html')  
+def contact_page():
+    app.logger.debug("you arrived at" + url_for('contact_page'))
+    return render_template("contact.html")
+
+
+		
     
 @app.route('/show',methods=['GET'])
 def show_message():
