@@ -8,9 +8,8 @@ $("#noidea").on("click", function(){
 
 $('#submitIknow').on('click', function(e){
     var venue = $("#location").val();
-    //var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0A%0D%0ACONSTRUCT+WHERE+%7B%0D%0A++%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09++++ah%3Avenue+%3Fvenue.%0D%0A%09%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en.%0D%0A%09%0D%0A%7D+%0D%0ALIMIT+10'
-      
-    var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0A%0D%0ACONSTRUCT+WHERE+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09+++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09%09ah%3Aproduction+%3Fproduction+.%0D%0A%09%0D%0A%09%3Fproduction+dc%3Atitle+%3Ftitle+.%0D%0A%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en.%0D%0A%7D%0D%0ALIMIT+10';
+    //var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0A%0D%0ACONSTRUCT+WHERE+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09+++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09%09ah%3Aproduction+%3Fproduction+.%0D%0A%09%0D%0A%09%3Fproduction+dc%3Atitle+%3Ftitle+.%0D%0A%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en.%0D%0A%7D%0D%0ALIMIT+10';
+    var venueSearch = 'http://api.artsholland.com/sparql?query=PREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E+%0D%0APREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0A%0D%0ACONSTRUCT+WHERE+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09%09+++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09%09ah%3Aproduction+%3Fproduction+.%0D%0A%09%0D%0A%09%3Fproduction+dc%3Atitle+%3Ftitle+.%0D%0A%09%09%09%09%0D%0A%09%3Fvenue+dc%3Atitle+%22'+venue+'%22%40en+%3B%0D%0A%09%09+++geo%3Along+%3Flong+%3B%0D%0A%09%09+++geo%3Alat+%3Flat+.%0D%0A%09%09+++%09%0D%0A%7D%0D%0ALIMIT+10';
     $.ajax({
          headers: {
              Accept: "text/turtle"
@@ -23,12 +22,12 @@ $('#submitIknow').on('click', function(e){
         }
     });
 
-    var query = 'PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?eventTitle WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n          ah:production ?production . \n    ?production dc:title ?title ; \n               dc:title ?eventTitle . \n    ?venue dc:title "Melkweg"@en . \n} LIMIT 10';
+    var query = 'PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?title ?long ?lat WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n          ah:production ?production . \n    ?production  dc:title ?title . \n    ?venue dc:title "Melkweg"@en ; \n            geo:long ?long; \n              geo:lat ?lat . \n } LIMIT 10';
     var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/artApp';
     var format = 'JSON';
 
     $.get('/sparql',data={'endpoint': endpoint, 'query': query, 'format': format}, function(json){
-        console.log(JSON.stringify(json.results.bindings[1].eventTitle.value));
+        console.log(JSON.stringify(json.results.bindings[1].title.value));
 
         try {
             var vars = json.head.vars;
@@ -54,7 +53,7 @@ $('#submitIknow').on('click', function(e){
                         li.append(a);
                     // Else we're just showing the value.
                     } else {
-                        li.append(v_value);console.log('value '+value);
+                        li.append(v_value);console.log('value '+ value);
                     }
                     li.append('<br/>');
 
@@ -69,10 +68,10 @@ $('#submitIknow').on('click', function(e){
             console.log('Something went wrong');
         }
     });
-    
+    /*
     $("#toHideMap").toggle();
         initialize_map();
-        //setMarker();
+        //setMarker();*/
 });
 
 $('#submitNoidea').on('click', function(e){ 
