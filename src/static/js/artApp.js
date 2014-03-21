@@ -40,6 +40,9 @@ $('#submitIknow').on('click', function(e){
 
     $.get('/sparql',data={'endpoint': endpoint, 'query': query, 'format': format}, function(json){
     
+        var lat = json.results.bindings[0].lat.value;
+        var lng = json.results.bindings[0].long.value;
+
         try {
             
             var vars = json.head.vars;
@@ -73,11 +76,11 @@ $('#submitIknow').on('click', function(e){
 $('#submitNoidea').on('click', function(e){ 
     //var venueType = $("#selectGenre option:selected").html();
     var venueType="Muziektheater";
-    var longitude = 0;
-    var latitude = 0;
+    var lng = 4.8;  
+    var lat = 52.3; 
     //get_location();
-
-    var locationSearch='http://api.artsholland.com/sparql?query=PREFIX+ah%3A+<http%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F>%0D%0APREFIX+geo%3A+<http%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23>%0D%0APREFIX+rdf%3A+<http%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23>%0D%0APREFIX+rdfs%3A+<http%3A%2F%2Fwww.w3.org%2F2000%2F01%2Frdf-schema%23>%0D%0A%0D%0ACONSTRUCT+%7B%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%7D%0D%0AWHERE+%7B%0D%0A++%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09++++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09ah%3Aproduction+%3Fproduction.%0D%0A%09%0D%0A%09%3Fproduction+ah%3Agenre+%3Fgenre.%0D%0A%0D%0A%09%3Fgenre+rdfs%3Alabel+%22'+venueType+'%22%5E%5Exsd%3Astring.%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%0D%0AFILTER+%28+%3Flong+%3E+%22'+longitude+'%22%5E%5Exsd%3Afloat+-+%220.025%22%5E%5Exsd%3Afloat+%26%26+%3Flong+%3C+%22'+longitude+'%22%5E%5Exsd%3Afloat+%2B+%220.025%22%5E%5Exsd%3Afloat+%0D%0A%09%09%26%26+%3Flat+%3E+%22'+latitude+'%22%5E%5Exsd%3Afloat+-+%220.015%22%5E%5Exsd%3Afloat+%26%26+%3Flat+%3C+%22'+latitude+'%22%5E%5Exsd%3Afloat+%2B+%220.015%22%5E%5Exsd%3Afloat%29%0D%0A%7D%0D%0A%0D%0A+LIMIT+10'
+    
+    var locationSearch= 'http://api.artsholland.com/sparql?query=PREFIX+ah%3A+%3Chttp%3A%2F%2Fpurl.org%2Fartsholland%2F1.0%2F%3E%0D%0APREFIX+rdf%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F1999%2F02%2F22-rdf-syntax-ns%23%3E%0D%0APREFIX+xsd%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2001%2FXMLSchema%23%3E%0D%0APREFIX+dc%3A+%3Chttp%3A%2F%2Fpurl.org%2Fdc%2Fterms%2F%3E%0D%0APREFIX+geo%3A+%3Chttp%3A%2F%2Fwww.w3.org%2F2003%2F01%2Fgeo%2Fwgs84_pos%23%3E%0D%0A%0D%0ACONSTRUCT+%7B%0D%0A%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09++++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09ah%3Aproduction+%3Fproduction.%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%09%3Fvenue+dc%3Atitle+%3Fvenuetitle.%0D%0A%09%3Fproduction+dc%3Atitle+%3FeventTitle.%0D%0A%09%3Fproduction+ah%3Agenre+%3FeventGenre.%09%0D%0A%7D%0D%0AWHERE+%7B%0D%0A++%09%3Fevent+rdf%3Atype+ah%3AEvent+%3B%0D%0A%09++++ah%3Avenue+%3Fvenue+%3B%0D%0A%09%09ah%3Aproduction+%3Fproduction.%0D%0A%09%0D%0A%09%3Fproduction+ah%3Agenre+%3FeventGenre.%0D%0A%09%3Fproduction+dc%3Atitle+%3FeventTitle.%0D%0A%0D%0A%0D%0A%09%3Fvenue+geo%3Alat+%3Flat.%0D%0A%09%3Fvenue+geo%3Along+%3Flong.%0D%0A%09%3Fvenue+dc%3Atitle+%3Fvenuetitle.%0D%0A%0D%0AFILTER+%28+%3Flong+%3E+%22'+lng+'%22%5E%5Exsd%3Afloat+-+%220.5%22%5E%5Exsd%3Afloat+%26%26+%3Flong+%3C+%22'+lng+'%22%5E%5Exsd%3Afloat+%2B+%220.5%22%5E%5Exsd%3Afloat+%0D%0A%09%09%26%26+%3Flat+%3E+%22'+lat+'%22%5E%5Exsd%3Afloat+-+%220.3%22%5E%5Exsd%3Afloat+%26%26+%3Flat+%3C+%22'+lat+'%22%5E%5Exsd%3Afloat+%2B+%220.3%22%5E%5Exsd%3Afloat%29%0D%0A%7D%0D%0A+LIMIT+50'
 
     $.ajax({
         headers: {
@@ -90,6 +93,15 @@ $('#submitNoidea').on('click', function(e){
             })
         }
     });
+
+    var query= 'PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#>\nPREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#>\nPREFIX ah: <http://purl.org/artsholland/1.0/> \nPREFIX dc: <http://purl.org/dc/terms/> \nSELECT DISTINCT ?venuetitle ?eventtitle ?long ?lat \nWHERE { \n?event rdf:type ah:Event ;          \nah:venue ?venue ;       \nah:production ?production . \n?production  dc:title ?eventtitle . \n?venue dc:title ?venuetitle ; \ngeo:long ?long; \ngeo:lat ?lat .\n}'
+    var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/artApp';
+    var format = 'JSON';
+
+    $.get('/sparql',data={'endpoint': endpoint, 'query': query, 'format': format}, function(json){
+        //console.log(JSON.stringify(json));
+        //json ready to be extracted
+    });
 });
 
 function handle_error(err) {
@@ -97,6 +109,7 @@ function handle_error(err) {
     window.alert("Uups, something went wrong!");
   }
 }
+
 
 function getToday() {
     var today = new Date();
