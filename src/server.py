@@ -33,7 +33,7 @@ def sparql():
     query = request.args.get('query', None)
     
     return_format = request.args.get('format','JSON')
-    
+    app.logger.debug(return_format)
     
     if endpoint and query :
         sparql = SPARQLWrapper(endpoint)
@@ -42,6 +42,8 @@ def sparql():
         
         if return_format == 'RDF':
             sparql.setReturnFormat(RDF)
+            sparql.addCustomParameter('Accept','application/sparql-results+xml')
+
         else :
             sparql.setReturnFormat('JSON')
             sparql.addCustomParameter('Accept','application/sparql-results+json')
@@ -52,13 +54,13 @@ def sparql():
         
         try :
             response = sparql.query().convert()
-            
             app.logger.debug('Results were returned, yay!')
             
             app.logger.debug(response)
             
             if return_format == 'RDF':
                 app.logger.debug('Serializing to Turtle format')
+                app.logger.debug(response)
                 return response.serialize(format='turtle')
             else :
                 app.logger.debug('Directly returning JSON format')
