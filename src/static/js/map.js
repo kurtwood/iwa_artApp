@@ -4,7 +4,7 @@ function initialize_map(){
     var myLatlng = new google.maps.LatLng(52.370569, 4.894989);
     
     var mapOptions = {
-        zoom: 5,
+        zoom: 12,
         center: myLatlng
     }
   
@@ -59,5 +59,46 @@ function showPosition(position)
   x.innerHTML = "Latitude: " + position.coords.latitude + 
   "<br>Longitude: " + position.coords.longitude; 
   }
+<<<<<<< HEAD
 
 
+=======
+/*
+  google.maps.event.addListener(marker, 'click', function() {
+    var query = 'PREFIX time: <http://www.w3.org/2006/time#> \n PREFIX geo: <http://www.w3.org/2003/01/geo/wgs84_pos#> \n PREFIX rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> \n PREFIX ah: <http://purl.org/artsholland/1.0/> \n PREFIX dc: <http://purl.org/dc/terms/> \n SELECT DISTINCT ?title ?long ?lat ?start  WHERE { \n    ?event rdf:type ah:Event ; \n          ah:venue ?venue ; \n       time:hasBeginning ?start ; \n      ah:production ?production . \n    ?production  dc:title ?title . \n    ?venue dc:title "'+venue+'"@en ; \n            geo:long ?long; \n              geo:lat ?lat . \n FILTER (langMatches(lang(?title), "NL")) . \n} \n ORDER BY ASC (?start) \n LIMIT 10';
+    var endpoint = 'http://localhost:8080/openrdf-sesame/repositories/artApp';
+    var format = 'JSON';
+
+    $.get('/sparql',data={'endpoint': endpoint, 'query': query, 'format': format}, function(json){
+    
+        try {
+            
+            var vars = json.head.vars;
+
+            var ul = $('<ul></ul>');
+            ul.addClass('list-group');
+
+            $.each(json.results.bindings, function(index,value){
+                var li = $('<li></li>');
+                li.addClass('list-group-item');
+
+                $.each(vars, function(index, v){
+
+                    if (index == 0) {
+                        li.append('<strong>'+value.title.value+'</strong>');
+                        li.append('    Start: <strong>' + value.start.value);
+                        li.append('</br>');
+                    }
+                });
+                ul.append(li);
+                
+            });
+            $('#linkOutput').html(ul);
+        } catch(err) {
+            $('#linkOutput').html('Something went wrong!');
+            console.log('Something went wrong');
+        }
+    });
+});
+*/
+>>>>>>> c40bb36a74ebf6a7a3cf1f5956b91ad745da07f4
