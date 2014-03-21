@@ -98,3 +98,9 @@ $('#submitNoidea').on('click', function(e){
     });
 });
 
+function handle_error(err) {
+  if (err.code == 1) {
+    window.alert("Uups, something went wrong!");
+  }
+}
+
